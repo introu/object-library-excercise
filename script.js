@@ -29,7 +29,11 @@ addButton.addEventListener('click', addBookToLibrary)
 const form = document.getElementById(`addForm`)
 
 function addBookToLibrary() {
-    newBook = new Book(form['title'].value, form['author'].value, form['pages'].value, true)
+    newBook = new Book(form['title'].value, form['author'].value, form['pages'].value, form['read'].checked)
+    if (!form['title'].value || !form['author'].value || !form['pages'].value) {
+        return
+    }
+    console.table(newBook)
     myLibrary.push(newBook)
     printLibrary()
 }
@@ -62,13 +66,13 @@ function printLibrary() {
         newCard.id = 'card' + i;
         newCard.className = 'card'
         libraryDisplay.appendChild(newCard)
-        newContent_1 = document.createTextNode(`${myLibrary[i].title}`)
+        newContent_1 = document.createTextNode(`Title: ${myLibrary[i].title}`)
         newContent_1a = document.createElement('p')
         newContent_1a.appendChild(newContent_1)
-        newContent_2 = document.createTextNode(`${myLibrary[i].author}`)
+        newContent_2 = document.createTextNode(`Author: ${myLibrary[i].author}`)
         newContent_2a = document.createElement('p')
         newContent_2a.appendChild(newContent_2)
-        newContent_3 = document.createTextNode(`${myLibrary[i].pages}`)
+        newContent_3 = document.createTextNode(`Number of pages: ${myLibrary[i].pages}`)
         newContent_3a = document.createElement('p')
         newContent_3a.appendChild(newContent_3)
         if (myLibrary[i].read) {

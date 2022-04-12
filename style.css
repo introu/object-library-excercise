@@ -63,21 +63,20 @@ header {
     align-items: center;
 }
 
-.modal {
+#modal {
     display: grid;
     grid-template-columns: auto;
     padding: 1em;
     max-width: 50ch;
-    border: 0;
-    box-shadow: 0 0 1em rgb(0 0 0 / .3);
+    border-style: none;
 }
 
-.modal > form > h1 {
+#modal > form > h1 {
     font-size: 1.3rem;
     font-weight: bold;
 }
 
-.modal > form > div {
+#modal > form > div {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
 }
@@ -97,4 +96,10 @@ header {
     border-style: solid;
     border-width: 1px;
     border-color: black;
+}
+
+dialog {
+    border-style: none;
+    background: white;
+    box-shadow: 0 0 1em rgb(0 0 0 / .3);
 }
