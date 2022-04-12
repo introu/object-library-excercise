@@ -23,8 +23,13 @@ function Book(title, author, pages, read) {
 
 let newBook;
 
+let addButton = document.querySelector('.formAdd')
+addButton.addEventListener('click', addBookToLibrary)
+
+const form = document.getElementById(`addForm`)
+
 function addBookToLibrary() {
-    newBook = new Book(prompt('title?'), prompt('author?'), prompt('pages?'), prompt('read?'))
+    newBook = new Book(form['title'].value, form['author'].value, form['pages'].value, true)
     myLibrary.push(newBook)
     printLibrary()
 }
