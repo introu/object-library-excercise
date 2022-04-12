@@ -1,18 +1,18 @@
-let Hobbit = {
-    author: 'Tolkien',
+/*let Hobbit = {
     title: 'Hobbit',
+    author: 'Tolkien',
     pages: '100',
     read: true
 }
 
 let Hobbit2 = {
-    author: 'Tolkien',
     title: 'Hobbit2',
+    author: 'Tolkien',
     pages: '150',
     read: false
-}
+}*/
 
-let myLibrary = [Hobbit, Hobbit2];
+let myLibrary = [];
 
 function Book(title, author, pages, read) {
     this.title = title;
@@ -33,7 +33,6 @@ function addBookToLibrary() {
     if (!form['title'].value || !form['author'].value || !form['pages'].value) {
         return
     }
-    console.table(newBook)
     myLibrary.push(newBook)
     printLibrary()
 }
@@ -51,13 +50,16 @@ let newContent_4a;
 const libraryDisplay = document.getElementById('libraryDisplay');
 
 function removeCards() {
-    for (let i = 0; i < myLibrary.length; i++) {
+    for (let i = 0; i <= myLibrary.length; i++) {
         let divToDelete = document.getElementById(`card` + i)
         if (divToDelete) {
-        divToDelete.remove()
+            divToDelete.remove()
         }
     }
 }
+
+let deleteButtons
+let indexValue
 
 function printLibrary() {
     removeCards()
@@ -84,10 +86,28 @@ function printLibrary() {
             newContent_4a = document.createElement('p')
             newContent_4a.appendChild(newContent_4)
         }
-        newCard.append(newContent_1a, newContent_2a, newContent_3a, newContent_4a)
+        let buttonDiv = document.createElement('div')
+        buttonDiv.className = 'buttonDiv';
+        let newDeleteButton = document.createElement('button')
+        newDeleteButton.id = 'deleteButton' + i;
+        newDeleteButton.className = 'cardButton deleteButton';
+        newDeleteButton.type = 'button'
+        newDeleteButton.textContent = 'Delete';
+        newDeleteButton.setAttribute('data-index', `${i}`)
+        let newReadButton = document.createElement('button')
+        newReadButton.id = 'readButton' + i;
+        newReadButton.className = 'cardButton readButton';
+        newReadButton.type = 'button'
+        newReadButton.textContent = 'Read';
+        newReadButton.setAttribute('data-index', `${i}`)
+        buttonDiv.append(newDeleteButton, newReadButton)
+        newCard.append(newContent_1a, newContent_2a, newContent_3a, newContent_4a, buttonDiv)
         libraryDisplay.appendChild(newCard)
+        deleteButtons = document.querySelectorAll('.deleteButton')
+        deleteButtons.forEach(button => button.addEventListener('click', actualDelete))
     }
 }
+
 const modal = document.querySelector('.modalDialog')
 const openModal = document.querySelector('.open-button')
 
@@ -95,5 +115,19 @@ openModal.addEventListener('click', () => {
     modal.showModal();
 })
 
-
 printLibrary()
+
+
+function actualDelete() {
+    if (deleteButtons === undefined) {
+    } else {
+        deleteButtons = document.querySelectorAll('.deleteButton')
+        deleteButtons.forEach(button => button.addEventListener('click', () => {
+            indexValue = parseInt(button.getAttribute('data-index'))
+            myLibrary.splice(indexValue, 1)
+            printLibrary()
+        }))
+    }
+}
+
+actualDelete()

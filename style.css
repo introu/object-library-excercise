@@ -96,10 +96,28 @@ header {
     border-style: solid;
     border-width: 1px;
     border-color: black;
+    border-radius: 5px;
 }
 
 dialog {
     border-style: none;
     background: white;
     box-shadow: 0 0 1em rgb(0 0 0 / .3);
+    border-radius: 10px;
+}
+
+.cardButton {
+    display: flex;
+    width: 5rem;
+    height: 1.2rem;
+    font-size: 1rem;
+    color: black;
+    font-family: inherit;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttonDiv {
+    display: flex;
+    gap: 0.5rem
 }
